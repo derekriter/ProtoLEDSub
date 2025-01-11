@@ -374,38 +374,17 @@ public class LEDSubsystem extends SubsystemBase {
         public int length() {return end - start + 1;}
         public OutputFormat outputFormat() {return outputFormat;}
     }
-
-    public enum LEDProtocol {
-        WS2812,     //https://cdn-shop.adafruit.com/datasheets/WS2812.pdf
-        WS2812B,    //https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf
-        WS2815      //https://www.led-stuebchen.de/download/WS2815.pdf
-    }
     
     private final AddressableLED leds;
     private final AddressableLEDBuffer buff;
     private final HashMap<Range, Animation> anims;
     private boolean needsUpdate;
 
-    public LEDSubsystem(LEDProtocol protocol) {
+    public LEDSubsystem() {
         leds = new AddressableLED(LEDConsts.portID);
         buff = new AddressableLEDBuffer(LEDConsts.ledCount);
 
-        switch(protocol) {
-            //default reset time is large enough for all protocols, don't need to change
-            
-            case WS2812:
-                leds.setBitTiming(350, 800, 700, 600);
-                break;
-            case WS2812B:
-                //default behaviour, do nothing
-                break;
-            case WS2815:
-                leds.setBitTiming(300, 1090, 1090, 320);
-                break;
-        }
         leds.setLength(LEDConsts.ledCount);
-
-        leds.setData(buff);
         leds.start();
 
         needsUpdate = true;
