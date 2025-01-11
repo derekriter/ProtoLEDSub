@@ -4,9 +4,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Constants.LEDConsts;
-import frc.robot.commands.led.SetLEDAnim;
 import frc.robot.commands.led.SetLEDOff;
-import frc.robot.subsystems.LEDSubsystem;
+import frc.robot.commands.led.SetLEDSolid;
 
 public class Robot extends TimedRobot {
 
@@ -30,14 +29,14 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
-        new SetLEDAnim(robotCont.ledSub, new LEDSubsystem.BreatheAnim(Color.kYellow).withRanges(LEDConsts.left, LEDConsts.right)).schedule();
+        // new SetLEDAnim(robotCont.ledSub, new LEDSubsystem.BreatheAnim(Color.kYellow).withRanges(LEDConsts.left, LEDConsts.right)).schedule();
     }
     @Override
     public void autonomousPeriodic() {}
 
     @Override
     public void teleopInit() {
-        new SetLEDAnim(robotCont.ledSub, new LEDSubsystem.ScanAnim(Color.kOrange).withRanges(LEDConsts.left, LEDConsts.right)).schedule();
+        new SetLEDSolid(robotCont.ledSub, Color.kGreen, LEDConsts.left).schedule();
     }
     @Override
     public void teleopPeriodic() {}
