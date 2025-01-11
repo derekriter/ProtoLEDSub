@@ -1,11 +1,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.Constants.LEDConsts;
-import frc.robot.commands.led.SetLEDOff;
-import frc.robot.commands.led.SetLEDSolid;
 
 public class Robot extends TimedRobot {
 
@@ -21,23 +17,17 @@ public class Robot extends TimedRobot {
     }
 
     @Override
-    public void disabledInit() {
-        new SetLEDOff(robotCont.ledSub, LEDConsts.left, LEDConsts.right).schedule();
-    }
+    public void disabledInit() {}
     @Override
     public void disabledPeriodic() {}
 
     @Override
-    public void autonomousInit() {
-        // new SetLEDAnim(robotCont.ledSub, new LEDSubsystem.BreatheAnim(Color.kYellow).withRanges(LEDConsts.left, LEDConsts.right)).schedule();
-    }
+    public void autonomousInit() {}
     @Override
     public void autonomousPeriodic() {}
 
     @Override
-    public void teleopInit() {
-        new SetLEDSolid(robotCont.ledSub, Color.kGreen, LEDConsts.left).schedule();
-    }
+    public void teleopInit() {}
     @Override
     public void teleopPeriodic() {}
 
